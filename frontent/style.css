@@ -1,0 +1,491 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0f0f1a;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Header and Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background-color: rgba(15, 15, 26, 0.9);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #e50914;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #e50914;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-container input {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+    background-color: #1a1a2e;
+    color: white;
+    outline: none;
+    width: 200px;
+    transition: width 0.3s;
+}
+
+.search-container input:focus {
+    width: 250px;
+}
+
+.search-container button {
+    background: none;
+    border: none;
+    color: white;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.hamburger {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+    margin-top: 80px;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-btn {
+    padding: 0.8rem 2rem;
+    background-color: #e50914;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta-btn:hover {
+    background-color: #b2070f;
+}
+
+/* Movies and TV Shows Sections */
+.movies-section, .tv-shows-section {
+    padding: 5rem 5%;
+}
+
+.movies-section h2, .tv-shows-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.movies-section h2::after, .tv-shows-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background-color: #e50914;
+}
+
+.movies-container, .tv-shows-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.movie-card, .tv-show-card {
+    background-color: #1a1a2e;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.movie-card:hover, .tv-show-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.movie-poster, .tv-show-poster {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.movie-info, .tv-show-info {
+    padding: 1rem;
+}
+
+.movie-title, .tv-show-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.movie-rating, .tv-show-rating {
+    display: flex;
+    align-items: center;
+    color: #f5c518;
+    font-weight: 600;
+}
+
+.movie-rating i, .tv-show-rating i {
+    margin-right: 0.3rem;
+}
+
+/* Footer */
+.footer {
+    background-color: #0a0a12;
+    padding: 3rem 5% 1rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #e50914;
+}
+
+.footer-section.about p {
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.footer-section.links ul {
+    list-style: none;
+}
+
+.footer-section.links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section.links a:hover {
+    color: #e50914;
+}
+
+.footer-section.contact p {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.footer-section.contact i {
+    margin-right: 0.5rem;
+}
+
+.socials {
+    margin-top: 1rem;
+}
+
+.socials a {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.socials a:hover {
+    color: #e50914;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid #1a1a2e;
+    opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .navbar.active .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: #0f0f1a;
+        padding: 1rem 0;
+    }
+
+    .navbar.active .nav-links li {
+        margin: 0.5rem 5%;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .movies-container, .tv-shows-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        text-align: center;
+    }
+
+    .hero-content {
+        margin: 0 auto;
+    }
+
+    .search-container input {
+        width: 150px;
+    }
+
+    .search-container input:focus {
+        width: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 1rem 5%;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .movies-section h2, .tv-shows-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Add to existing style.css */
+
+/* Modal Styles */
+.modal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #1a1a2e;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: #fff;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #0f0f1a;
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: white;
+    font-size: 1rem;
+}
+
+.submit-btn {
+    background-color: #e50914;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #b2070f;
+}
+
+/* Movie Actions */
+.movie-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+}
+
+.movie-actions button {
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.movie-actions button:hover {
+    color: #fff;
+}
+
+.movie-actions .edit-btn:hover {
+    color: #4CAF50;
+}
+
+.movie-actions .delete-btn:hover {
+    color: #f44336;
+}
+
+/* Add Movie Button */
+.add-movie-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.add-movie-btn:hover {
+    background-color: #3e8e41;
+}
+
+/* Movie Year and Genre */
+.movie-year-genre {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 0.5rem;
+}
+
+/* Error and No Results Messages */
+.error, .no-results {
+    text-align: center;
+    padding: 2rem;
+    color: #e50914;
+    grid-column: 1 / -1;
+}
+
+.no-results {
+    color: #aaa;
+}

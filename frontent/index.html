@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineVerse - Your Movie Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="logo">Cinema Go</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#movies">Movies</a></li>
+            <li><a href="#tv-shows">TV Shows</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+        <div class="search-container">
+            <input type="text" placeholder="Search movies..." id="search-input">
+            <button id="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Welcome to CineVerse</h1>
+            <p>Discover your next favorite movie or TV show</p>
+            <button class="cta-btn">Explore Now</button>
+        </div>
+    </section>
+
+    <section class="movies-section" id="movies">
+        <h2>Popular Movies</h2>
+        <div class="movies-container" id="movies-container">
+
+        </div>
+    </section>
+
+    <section class="tv-shows-section" id="tv-shows">
+        <h2>Popular TV Shows</h2>
+        <div class="tv-shows-container" id="tv-shows-container">
+
+        </div>
+    </section>
+</main>
+
+<footer class="footer" id="about">
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h3>About CineVerse</h3>
+            <p>Your ultimate destination for movie and TV show information, ratings, and recommendations.</p>
+        </div>
+        <div class="footer-section links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#movies">Movies</a></li>
+                <li><a href="#tv-shows">TV Shows</a></li>
+            </ul>
+        </div>
+        <div class="footer-section contact">
+            <h3>Contact Us</h3>
+            <p><i class="fas fa-envelope"></i> info@cinemago.com</p>
+            <div class="socials">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 CinemaGo. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
