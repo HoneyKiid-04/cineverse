@@ -2,6 +2,7 @@ package main
 
 import (
 	"cineverse/internal/database"
+	"cineverse/internal/routes"
 	"fmt"
 	"log"
 
@@ -32,6 +33,9 @@ func main() {
 	if port == "" {
 		port = "8080"
 	}
+
+	// Register routes
+	routes.RegisterRoutes(router, db)
 
 	// Start the server
 	if err := router.Run(fmt.Sprintf(":%s", port)); err != nil {
