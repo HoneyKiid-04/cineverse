@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS contents;
+DROP TABLE IF EXISTS users;
+DROP TYPE IF EXISTS content_type_enum;
+DROP TYPE IF EXISTS role_enum;

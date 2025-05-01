@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: cineverse_db
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: cineverse
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - cineverse-network
+
+  # cineverse:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: cineverse_app
+  #   restart: always
+  #   ports:
+  #     - "8080:8080"
+  #   environment:
+  #     PORT: 8080
+  #     DB_HOST: cineverse_db
+  #     DB_USER: user
+  #     DB_PASSWORD: password
+  #     DB_NAME: cineverse
+  #     DB_PORT: 5432
+  #     DB_SSLMODE: disable
+  #   depends_on:
+  #     - postgres
+  #   networks:
+  #     - cineverse-network
+
+volumes:
+  pg_data:
+
+networks:
+  cineverse-network:
+    driver: bridge
