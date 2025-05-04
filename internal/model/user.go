@@ -13,8 +13,10 @@ const (
 
 type User struct {
 	gorm.Model
-	Username string `json:"username" gorm:"uniqueIndex;not null"`
-	Email    string `json:"email" gorm:"uniqueIndex;not null"`
-	Password string `json:"password" gorm:"not null"`
-	Role     Role   `json:"role" gorm:"not null"`
+	Username  string `json:"username" gorm:"uniqueIndex;not null"`
+	Email     string `json:"email" gorm:"uniqueIndex;not null"`
+	Password  string `json:"password" gorm:"not null"`
+	Role      Role   `json:"role" gorm:"not null"`
+	Bio       string `json:"bio"`
+	AvatarURL string `json:"avatar_url" gorm:"column:avatar_url"`
 }

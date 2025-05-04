@@ -1,14 +1,18 @@
 package database
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
-	"os"
 	"path/filepath"
 
 	"github.com/spf13/viper"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+
+	"github.com/golang-migrate/migrate/v4"
+	psmigrate "github.com/golang-migrate/migrate/v4/database/postgres"
+	_ "github.com/golang-migrate/migrate/v4/source/file"
 )
 
 func Init() (*gorm.DB, error) {
@@ -38,34 +42,63 @@ func Init() (*gorm.DB, error) {
 }
 
 func MigrateUp(db *gorm.DB) error {
-	// Get SQL content from up migration file
-	content, err := os.ReadFile(filepath.Join("migrations", "000001_init_schema.up.sql"))
+	sqlDB, err := db.DB()
 	if err != nil {
-		return fmt.Errorf("failed to read migration file: %w", err)
+		return fmt.Errorf("failed to get underlying sql.DB: %w", err)
 	}
 
-	// Execute the SQL migration
-	if err := db.Exec(string(content)).Error; err != nil {
-		return fmt.Errorf("failed to execute migration: %w", err)
-	}
-
-	log.Printf("Successfully executed UP migration: %s", "000001_init_schema.up.sql")
-	return nil
+	return executeMigration(sqlDB, "up")
 }
 
-// MigrateDown rolls back all migrations
 func MigrateDown(db *gorm.DB) error {
-	// Get SQL content from down migration file
-	content, err := os.ReadFile(filepath.Join("migrations", "000001_init_schema.down.sql"))
+	sqlDB, err := db.DB()
 	if err != nil {
-		return fmt.Errorf("failed to read migration file: %w", err)
+		return fmt.Errorf("failed to get underlying sql.DB: %w", err)
 	}
 
-	// Execute the SQL rollback
-	if err := db.Exec(string(content)).Error; err != nil {
-		return fmt.Errorf("failed to execute rollback: %w", err)
+	return executeMigration(sqlDB, "down")
+}
+
+func executeMigration(db *sql.DB, direction string) error {
+	// Get absolute path to migrations directory
+	migrationsPath, err := filepath.Abs("migrations")
+	if err != nil {
+		return fmt.Errorf("failed to get migrations path: %w", err)
 	}
 
-	log.Printf("Successfully executed DOWN migration: %s", "000001_init_schema.down.sql")
+	// Convert path to URL-friendly format
+	migrationsURL := "file://" + filepath.ToSlash(migrationsPath)
+
+	// Create postgres driver instance
+	driver, err := psmigrate.WithInstance(db, &psmigrate.Config{})
+	if err != nil {
+		return fmt.Errorf("failed to create postgres driver: %w", err)
+	}
+
+	// Initialize migrate instance
+	m, err := migrate.NewWithDatabaseInstance(
+		migrationsURL,
+		viper.GetString("DB_NAME"),
+		driver,
+	)
+	if err != nil {
+		return fmt.Errorf("failed to create migrate instance: %w", err)
+	}
+	defer m.Close()
+
+	// Execute migration based on direction
+	var migrationErr error
+	if direction == "up" {
+		migrationErr = m.Up()
+	} else {
+		migrationErr = m.Down()
+	}
+
+	// Handle migration errors
+	if migrationErr != nil && migrationErr != migrate.ErrNoChange {
+		return fmt.Errorf("migration failed: %w", migrationErr)
+	}
+
+	log.Printf("Successfully executed %s migrations", direction)
 	return nil
 }
