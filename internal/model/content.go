@@ -23,7 +23,7 @@ type Content struct {
 	Rating      float32     `json:"rating"`
 	Genres      string      `json:"genres"`
 	Director    string      `json:"director"`
-	Cast        string      `json:"cast"`
+	Cast        string      `json:"cast" gorm:"column:cast_members"`
 	PosterURL   string      `json:"poster_url"`
 	// Show specific fields
 	Seasons  int `json:"seasons,omitempty"`

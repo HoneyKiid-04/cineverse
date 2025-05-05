@@ -84,7 +84,7 @@ func executeMigration(db *sql.DB, direction string) error {
 	if err != nil {
 		return fmt.Errorf("failed to create migrate instance: %w", err)
 	}
-	defer m.Close()
+	// defer m.Close()
 
 	// Execute migration based on direction
 	var migrationErr error
