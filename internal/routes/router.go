@@ -8,4 +8,5 @@ import (
 func RegisterRoutes(router *gin.Engine, db *gorm.DB) {
 	RegisterAuthRoutes(router, db)
 	RegisterContentRoutes(router, db)
+	RegisterUserProfileRoutes(router, db)
 }
