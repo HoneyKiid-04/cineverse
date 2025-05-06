@@ -16,26 +16,26 @@ services:
     networks:
       - cineverse-network
 
-  # cineverse:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   container_name: cineverse_app
-  #   restart: always
-  #   ports:
-  #     - "8080:8080"
-  #   environment:
-  #     PORT: 8080
-  #     DB_HOST: cineverse_db
-  #     DB_USER: user
-  #     DB_PASSWORD: password
-  #     DB_NAME: cineverse
-  #     DB_PORT: 5432
-  #     DB_SSLMODE: disable
-  #   depends_on:
-  #     - postgres
-  #   networks:
-  #     - cineverse-network
+  cineverse:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cineverse_app
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      PORT: 8080
+      DB_HOST: cineverse_db
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_NAME: cineverse
+      DB_PORT: 5432
+      DB_SSLMODE: disable
+    depends_on:
+      - postgres
+    networks:
+      - cineverse-network
 
 volumes:
   pg_data:

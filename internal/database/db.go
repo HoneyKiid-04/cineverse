@@ -15,13 +15,24 @@ import (
 	_ "github.com/golang-migrate/migrate/v4/source/file"
 )
 
-func Init() (*gorm.DB, error) {
-	// Configure Viper to read from .env file
-	viper.SetConfigFile(".env")
+func EnvInit() {
+	viper.AutomaticEnv()
 	if err := viper.ReadInConfig(); err != nil {
-		log.Fatal("Error reading .env file:", err)
+		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
+			log.Fatal("Error reading config file:", err)
+		}
+		log.Println("No .env file found, using OS environment variables")
 	}
+	viper.SetDefault("DB_HOST", "localhost")
+	viper.SetDefault("DB_USER", "user")
+	viper.SetDefault("DB_PASSWORD", "password")
+	viper.SetDefault("DB_NAME", "cineverse")
+	viper.SetDefault("DB_PORT", "5432")
+	viper.SetDefault("DB_SSLMODE", "disable")
+}
 
+func Init() (*gorm.DB, error) {
+	EnvInit()
 	// Construct database connection string
 	dsn := fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=Asia/Jakarta",

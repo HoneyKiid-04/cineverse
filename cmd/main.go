@@ -12,11 +12,6 @@ import (
 )
 
 func main() {
-	// Configure Viper to read from .env file
-	viper.SetConfigFile(".env")
-	if err := viper.ReadInConfig(); err != nil {
-		log.Fatal("Error reading .env file:", err)
-	}
 
 	db, err := database.Init()
 	if err != nil {
