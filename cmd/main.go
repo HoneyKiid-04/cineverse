@@ -21,9 +21,13 @@ func main() {
 		log.Fatal("Error migrating database:", err)
 	}
 	router := gin.Default()
-
 	config := cors.DefaultConfig()
 	config.AllowAllOrigins = true
+	config.AllowMethods = []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"}
+	config.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type", "Authorization"}
+	config.ExposeHeaders = []string{"Content-Length"}
+	config.AllowCredentials = true
+	
 	router.Use(cors.New(config))
 
 	// Initialize Gin router
