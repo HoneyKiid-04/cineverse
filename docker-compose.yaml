@@ -37,6 +37,19 @@ services:
     networks:
       - cineverse-network
 
+  frontend:
+    image: cineverse-frontend
+    container_name: cineverse_frontend
+    restart: always
+    ports:
+     - "5173:4173"
+    depends_on:
+      - cineverse
+    environment:
+      VITE_API_URL: http://cineverse_app:8080/api/v1
+    networks:
+      - cineverse-network
+
 volumes:
   pg_data:
 
